@@ -1,0 +1,25 @@
+
+# Plot the data
+st.subheader("Price Comparison")
+fig = go.Figure()
+fig.add_trace(go.Scatter(
+    x=selected_stock_data["Date"],
+    y=selected_stock_data["Actual Price"],
+    mode='lines+markers',
+    name="Actual Price",
+    line=dict(color='blue')
+))
+fig.add_trace(go.Scatter(
+    x=selected_stock_data["Date"],
+    y=selected_stock_data["Forecasted Price"],
+    mode='lines+markers',
+    name="Forecasted Price",
+    line=dict(color='red')
+))
+fig.update_layout(
+    title="Actual vs Forecasted Prices",
+    xaxis_title="Date",
+    yaxis_title="Price",
+    legend=dict(orientation="h", x=0.5, xanchor="center", y=1.1)
+)
+st.plotly_chart(fig)
